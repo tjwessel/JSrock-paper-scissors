@@ -24,7 +24,8 @@ function computerPlay() {
 function playRound(playerSelection) {
     const computerSelection = computerPlay();
     playerSelection = playerSelection.toLowerCase();
-    let winnerMsg = '';
+    let winnerMsg
+    let winner
 
     //There are 9 possible outcomes for Rock, Paper, Scissors. Nested if statements should do the trick.
     //Consider updating this at some point with logic that recognizes the heirarchy of rock, paper and scissors.
@@ -33,39 +34,81 @@ function playRound(playerSelection) {
     if (playerSelection == 'rock') {
         if (computerSelection == 'scissors') {
             winnerMsg = 'You win! Rock beats scissors.';
+            winner = 'player';
         }
         else if (computerSelection == 'paper') {
             winnerMsg = 'You lose! Paper beats rock.';
+            winner = 'computer';
         }
         else if (computerSelection == 'rock'){
             winnerMsg = 'Tie! You both picked rock.';
+            winner = 'tie';
         }
     }
     else if (playerSelection == 'paper') {
         if (computerSelection == 'scissors') {
             winnerMsg = 'You lose! Scissors beats paper.';
+            winner = 'computer';
         }
         else if (computerSelection == 'paper') {
             winnerMsg = 'Tie! You both picked paper.';
+            winner = 'tie';
         }
         else if (computerSelection == 'rock'){
             winnerMsg = 'You win! Paper beats rock.';
+            winner = 'player';
         }
     }
     else if (playerSelection == 'scissors') {
         if (computerSelection == 'scissors') {
             winnerMsg = 'Tie! You both picked scissors.';
+            winner = 'tie';
         }
         else if (computerSelection == 'paper') {
             winnerMsg = 'You win! Scissors beats paper';
+            winner = 'player';
         }
         else if (computerSelection == 'rock'){
             winnerMsg = 'You lose! Rock beats scissors';
+            winner = 'computer';
         }
     }
     else {
         console.log("Please use 'Rock', 'Paper', or 'Scissor'");
     }
-    return winnerMsg
+    console.log(winnerMsg);
+    return winner
 
 }
+
+// game() function will start a new, 5-round game
+// it will prompt user for their choice, and call playRound() with the answer
+// scores will be tallied and a message displayed at the end, declaring a winner and final score
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    console.log("Best out of 5!");
+    for (let i = 0; i < 5; i++) {
+        let choice = prompt('Rock, paper, or scissors?');
+        let winner = playRound(choice);
+        if (winner === 'player') {
+            playerScore++;
+        }
+        else if (winner === 'computer') {
+            computerScore++;
+        }
+        console.log(`score: ${playerScore} to ${computerScore}`);
+     }
+
+    if (playerScore > computerScore) {
+        alert(`You WIN!! ${playerScore} to ${computerScore}`);
+    }
+    else if (playerScore < computerScore) {
+        alert(`You lose :( ${playerScore} to ${computerScore}`);
+    }
+    else {
+        alert(`TIE! ${playerScore} to ${computerScore}`);
+    }
+}
+    
