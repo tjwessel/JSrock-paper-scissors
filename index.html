@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Rock, Paper, Scissors</title>
-    <script src="javascript.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="javascript.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300&display=swap');
+    </style>
 </head>
 <body>
-    
+    <h1>ROCK, PAPER, SCISSORS?</h1>
+    <h2 id="score"></h2>
+    <div id="container">
+        <div id="userButtons">
+            <button class="choice">Rock</button>
+            <button class="choice">Paper</button>
+            <button class="choice">Scissors</button>
+        </div>
+        <div id="results">
+            <p id="computerChoiceDisplay">NEW GAME</p>
+            <p id="instantReplay">Good luck.</p>
+        </div>
+    </div>
 </body>
 </html>

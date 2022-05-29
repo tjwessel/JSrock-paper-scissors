@@ -73,10 +73,9 @@ function playRound(playerSelection) {
             winner = 'computer';
         }
     }
-    else {
-        console.log("Please use 'Rock', 'Paper', or 'Scissor'");
-    }
-    console.log(winnerMsg);
+    
+    computerChoiceDisplay.textContent = 'The computer chose ' + computerSelection;
+    instantReplay.textContent = winnerMsg;
     return winner
 
 }
@@ -85,30 +84,52 @@ function playRound(playerSelection) {
 // it will prompt user for their choice, and call playRound() with the answer
 // scores will be tallied and a message displayed at the end, declaring a winner and final score
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-    console.log("Best out of 5!");
-    for (let i = 0; i < 5; i++) {
-        let choice = prompt('Rock, paper, or scissors?');
-        let winner = playRound(choice);
-        if (winner === 'player') {
-            playerScore++;
-        }
-        else if (winner === 'computer') {
-            computerScore++;
-        }
-        console.log(`score: ${playerScore} to ${computerScore}`);
-     }
+// function game() {
+//     let playerScore = 0;
+//     let computerScore = 0;
+//     console.log("Best out of 5!");
+//     for (let i = 0; i < 5; i++) {
+//         let choice = prompt('Rock, paper, or scissors?');
+//         let winner = playRound(choice);
+//         if (winner === 'player') {
+//             playerScore++;
+//         }
+//         else if (winner === 'computer') {
+//             computerScore++;
+//         }
+//         console.log(`score: ${playerScore} to ${computerScore}`);
+//      }
 
-    if (playerScore > computerScore) {
-        alert(`You WIN!! ${playerScore} to ${computerScore}`);
+//     if (playerScore > computerScore) {
+//         alert(`You WIN!! ${playerScore} to ${computerScore}`);
+//     }
+//     else if (playerScore < computerScore) {
+//         alert(`You lose :( ${playerScore} to ${computerScore}`);
+//     }
+//     else {
+//         alert(`TIE! ${playerScore} to ${computerScore}`);
+//     }
+// }
+
+function onClick(playerSelection) {
+    let winner = playRound(playerSelection);
+    if (winner === 'player') {
+            playerScore++;
+        } else if (winner === 'computer') {
+            computerScore++;
     }
-    else if (playerScore < computerScore) {
-        alert(`You lose :( ${playerScore} to ${computerScore}`);
-    }
-    else {
-        alert(`TIE! ${playerScore} to ${computerScore}`);
-    }
+    scoreDisplay.textContent = playerScore + ' - ' + computerScore;
 }
+
+let playerScore = 0;
+let computerScore = 0;
+const scoreDisplay = document.querySelector('#score');
+scoreDisplay.textContent = playerScore + ' - ' + computerScore;
+const choiceButtons = document.querySelectorAll('.choice');
+choiceButtons.forEach(button => button.addEventListener('click', () => onClick(button.textContent)))
+const computerChoiceDisplay = document.querySelector('#computerChoiceDisplay');
+const instantReplay = document.querySelector('#instantReplay');
+
+
+
     
